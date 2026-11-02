@@ -2,24 +2,29 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config,inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/programs/neovim
     ../../modules/programs/development.nix
-    ];
+    ../../modules/desktop/niri
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -29,7 +34,10 @@
   networking.networkmanager.enable = true;
 
   # DNS servers
-  networking.nameservers = ["192.168.1.51" "192.168.1.52"];
+  networking.nameservers = [
+    "192.168.1.51"
+    "192.168.1.52"
+  ];
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -62,7 +70,7 @@
     layout = "us";
     variant = "";
   };
- 
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -85,40 +93,43 @@
   users.users."coffeeg" = {
     isNormalUser = true;
     description = "houssine";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
-  
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-   # environment.systemPackages = with pkgs; [
-   #   vim 
-   #   wget
-   #   neovim
-   #   opencode
-   #   fastfetch
-   #   git
-   # ];
+  environment.systemPackages = with pkgs; [
+    brave
+    #   vim
+    #   wget
+    #   neovim
+    #   opencode
+    #   fastfetch
+    #   git
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-   programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

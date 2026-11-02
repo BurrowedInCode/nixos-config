@@ -48,13 +48,10 @@ layer-rule {
 }
 
 window-rule {
+    // Keep the focus ring from filling transparent window backgrounds.
+    draw-border-with-background false
     geometry-corner-radius 12
     clip-to-geometry true
-}
-
-window-rule {
-    match app-id="^discord$"
-    draw-border-with-background false
 }
 
 binds {
