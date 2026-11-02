@@ -1,11 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
   programs.niri.enable = true;
 
   systemd.user.services.niri = {
@@ -50,20 +45,13 @@
     "d /home/coffeeg/.config/dms 0755 coffeeg users - -"
     "d /home/coffeeg/.config/dms/config.d 0755 coffeeg users - -"
     "L+ /home/coffeeg/.config/dms/config.d/90-fonts.json - - - - /etc/dms/fonts.json"
-    "d /home/coffeeg/.config/opencode 0755 coffeeg users - -"
-    "L+ /home/coffeeg/.config/opencode/tui.json - - - - /etc/opencode/tui.json"
   ];
 
   environment.etc."dms/fonts.json".text = builtins.toJSON {
     fontFamily = "JetBrainsMono Nerd Font";
     monoFontFamily = "JetBrainsMono Nerd Font";
   };
-  environment.etc."opencode/tui.json".text = builtins.toJSON {
-    "$schema" = "https://opencode.ai/tui.json";
-    theme = "system";
-  };
-
-  environment.etc."niri/config.kdl".source = ./niri-config.kdl;
+  environment.etc."niri/config.kdl".text = builtins.readFile ./config.kdl;
   environment.etc."wallpapers/nix.jpg".source = ./wallpaper.jpg;
   environment.etc."ghostty/config".text = ''
     theme = "Rose Pine"
