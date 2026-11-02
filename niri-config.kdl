@@ -1,3 +1,15 @@
+output "DP-1" {
+    mode "2560x1440@164.983"
+    scale 1
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@60.000"
+    scale 1
+    position x=288 y=1440
+}
+
 input {
     keyboard {
         xkb {
@@ -18,7 +30,7 @@ environment {
 }
 
 layout {
-    gaps 8
+    gaps 4
     background-color "transparent"
     center-focused-column "never"
     preset-column-widths {
@@ -52,8 +64,14 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+    match app-id="^discord$"
+    draw-border-with-background false
+}
+
 binds {
-    Mod+Return hotkey-overlay-title="Ghostty Terminal" { spawn "ghostty"; }
+    Mod+T hotkey-overlay-title="Ghostty Terminal" { spawn "ghostty"; }
+    Mod+B hotkey-overlay-title="Brave Browser" { spawn "brave"; }
     Mod+Space hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+V hotkey-overlay-title="Clipboard History" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
     Mod+Comma hotkey-overlay-title="DMS Settings" { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }
@@ -70,6 +88,18 @@ binds {
     Mod+Shift+Right { move-column-right; }
     Mod+Shift+Up { move-window-up; }
     Mod+Shift+Down { move-window-down; }
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Ctrl+H hotkey-overlay-title="Focus Left Monitor" { focus-monitor-left; }
+    Mod+Ctrl+L hotkey-overlay-title="Focus Right Monitor" { focus-monitor-right; }
+    Mod+Ctrl+Shift+H hotkey-overlay-title="Move Window to Left Monitor" { move-window-to-monitor-left; }
+    Mod+Ctrl+Shift+L hotkey-overlay-title="Move Window to Right Monitor" { move-window-to-monitor-right; }
+    Mod+Ctrl+J hotkey-overlay-title="Focus Lower Monitor" { focus-monitor-down; }
+    Mod+Ctrl+K hotkey-overlay-title="Focus Upper Monitor" { focus-monitor-up; }
+    Mod+Ctrl+Shift+J hotkey-overlay-title="Move Window to Lower Monitor" { move-window-to-monitor-down; }
+    Mod+Ctrl+Shift+K hotkey-overlay-title="Move Window to Upper Monitor" { move-window-to-monitor-up; }
     Mod+Page_Up { focus-workspace-up; }
     Mod+Page_Down { focus-workspace-down; }
     Mod+Shift+Page_Up { move-column-to-workspace-up; }

@@ -11,6 +11,16 @@
     ./dms-desktop.nix
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  programs.bash.shellAliases.rebuild = "sudo nixos-rebuild switch --flake /home/coffeeg/nixos-config#nixos";
+
+  # Keep LazyVim's configuration and plugin lockfile writable in the repository.
+  systemd.tmpfiles.rules = [
+    "d /home/coffeeg/.config 0755 coffeeg users - -"
+    "L /home/coffeeg/.config/nvim - - - - /home/coffeeg/nixos-config/nvim"
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -92,6 +102,9 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (pkgs.lib.getName pkg) [ "discord" ];
   
 
   # List packages installed in system profile.
@@ -100,10 +113,32 @@
      vim 
      wget
      neovim
+     go_1_27
+     gopls
+     nixd
+     lua-language-server
+     nodejs
+     typescript
+     typescript-language-server
+     prettier
+     nixfmt
+     stylua
+     shfmt
+     lazygit
+     ripgrep
+     fd
+     gcc
+     gnumake
+     tree-sitter
+     unzip
      opencode
-     fastfetch
-     git
-   ];
+      fastfetch
+      git
+       brave
+       (discord.override {
+         commandLineArgs = "--ozone-platform=x11";
+       })
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
