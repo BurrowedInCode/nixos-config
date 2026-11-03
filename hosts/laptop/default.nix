@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/programs/neovim
+    ../../modules/programs/zellij
     ../../modules/programs/development.nix
     ../../modules/desktop/niri
   ];

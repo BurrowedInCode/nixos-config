@@ -7,6 +7,7 @@
     ../../modules/users/coffeeg.nix
     ../../modules/programs/development.nix
     ../../modules/programs/neovim
+    ../../modules/programs/zellij
     ../../modules/desktop
   ];
 

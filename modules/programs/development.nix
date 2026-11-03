@@ -1,11 +1,15 @@
 { pkgs, ... }:
 
 {
+  virtualisation.docker.enable = true;
+  users.users.coffeeg.extraGroups = [ "docker" ];
+
   environment.systemPackages = with pkgs; [
     go_1_27
     nodejs
     typescript
     lazygit
+    lazydocker
     ripgrep
     fd
     gcc
