@@ -6,7 +6,14 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        gopls = { mason = false },
+        gopls = {
+          mason = false,
+          settings = {
+            gopls = {
+              buildFlags = { "-tags=integration" },
+            },
+          },
+        },
         nixd = { mason = false },
         lua_ls = { mason = false },
         ts_ls = { mason = false },

@@ -15,7 +15,6 @@
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/programs/neovim
-    ../../modules/programs/zellij
     ../../modules/programs/development.nix
     ../../modules/desktop/niri
   ];
@@ -110,7 +109,6 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    brave
     #   vim
     #   wget
     #   neovim

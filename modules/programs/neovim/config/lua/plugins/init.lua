@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
+    lazy = false,
     dependencies = { "nvim-mini/mini.icons" },
     opts = {
       default_file_explorer = true,
@@ -12,6 +13,9 @@ return {
   },
   {
     "folke/snacks.nvim",
+    opts = {
+      explorer = { enabled = false },
+    },
     keys = {
       {
         "<leader>td",

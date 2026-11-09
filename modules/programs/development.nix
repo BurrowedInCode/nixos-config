@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   virtualisation.docker.enable = true;
@@ -15,7 +15,8 @@
     gcc
     gnumake
     unzip
-    opencode
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.herdr
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode
   ];
 
   systemd.tmpfiles.rules = [

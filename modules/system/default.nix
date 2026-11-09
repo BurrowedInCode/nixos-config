@@ -7,6 +7,7 @@
   ];
 
   programs.bash.shellAliases.rebuild = "sudo nixos-rebuild switch --flake /home/coffeeg/nixos-config#${config.networking.hostName}";
+  programs.bash.shellAliases.coa-db = "docker compose -f /home/coffeeg/repos/cannabis_coa_analyzer/docker-compose.yml exec postgres psql -U admin -d cannabis_coa_analyzer";
 
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
