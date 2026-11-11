@@ -34,12 +34,13 @@ in
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (pkgs.lib.getName pkg) [
+      "brave"
       "discord"
       "obsidian"
     ];
 
   environment.systemPackages = with pkgs; [
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    brave
     unstable.obsidian
     vesktop
     (discord.override {

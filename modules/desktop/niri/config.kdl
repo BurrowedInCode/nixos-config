@@ -56,7 +56,7 @@ window-rule {
 
 binds {
     Mod+T hotkey-overlay-title="Ghostty Terminal" { spawn "ghostty"; }
-    Mod+B hotkey-overlay-title="Zen Browser" { spawn "zen-beta"; }
+    Mod+B hotkey-overlay-title="Brave Browser" { spawn "brave"; }
     Mod+Space hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+V hotkey-overlay-title="Clipboard History" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
     Mod+Comma hotkey-overlay-title="DMS Settings" { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }

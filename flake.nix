@@ -3,10 +3,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     dms = {
       url = "github:duxlabs-dev/dux-shell/v2.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dcal = {
+      url = "github:duxlabs-dev/dux-calendar";
     };
   };
   outputs =

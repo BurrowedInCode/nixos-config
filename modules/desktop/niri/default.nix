@@ -1,6 +1,10 @@
 { pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.dcal.nixosModules.dank-calendar
+  ];
+
   programs.niri.enable = true;
 
   systemd.user.services.niri = {
@@ -21,6 +25,15 @@
     enableSystemMonitoring = true;
     enableDynamicTheming = true;
     enableCalendarEvents = true;
+  };
+
+  programs.dank-calendar = {
+    enable = true;
+    package = inputs.dcal.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    systemd = {
+      enable = true;
+      target = "niri.service";
+    };
   };
 
   environment.systemPackages = with pkgs; [
