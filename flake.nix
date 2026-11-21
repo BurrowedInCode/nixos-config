@@ -13,29 +13,23 @@
   };
   outputs =
     inputs@{ nixpkgs, ... }:
+    let
+      system = "x86_64-linux";
+      mkHost =
+        path:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [ path ];
+        };
+    in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/pc
-        ];
+      nixosConfigurations = {
+        nixos = mkHost ./hosts/pc;
+        laptop = mkHost ./hosts/laptop;
+        server = mkHost ./hosts/server;
       };
 
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/laptop
-        ];
-      };
-
-      nixosConfigurations.server = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/server
-        ];
-      };
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
     };
 }

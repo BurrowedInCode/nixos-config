@@ -4,6 +4,8 @@
   virtualisation.docker.enable = true;
   users.users.coffeeg.extraGroups = [ "docker" ];
 
+  programs.bash.shellAliases.coa-db = "docker compose -f /home/coffeeg/repos/cannabis_coa_analyzer/docker-compose.yml exec postgres psql -U admin -d cannabis_coa_analyzer";
+
   environment.systemPackages = with pkgs; [
     go_1_27
     rustc

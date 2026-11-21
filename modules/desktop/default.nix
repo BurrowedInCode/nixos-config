@@ -3,12 +3,12 @@
 let
   unstable = import inputs.nixpkgs-unstable {
     system = pkgs.stdenv.hostPlatform.system;
-    config.allowUnfreePredicate =
-      pkg: builtins.elem (pkgs.lib.getName pkg) [ "obsidian" ];
+    config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "obsidian" ];
   };
 in
 {
   imports = [
+    ./common.nix
     ./niri
     ./plasma.nix
   ];
@@ -18,19 +18,10 @@ in
     powerOnBoot = true;
   };
 
-  services.printing.enable = true;
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # Avoid the X11 bell module crashing when the display server exits.
-    extraConfig.pipewire."99-disable-x11-bell"."context.properties"."module.x11.bell" = false;
-  };
+  # Avoid the X11 bell module crashing when the display server exits.
+  services.pipewire.extraConfig.pipewire."99-disable-x11-bell"."context.properties"."module.x11.bell" =
+    false;
 
-  programs.firefox.enable = true;
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (pkgs.lib.getName pkg) [

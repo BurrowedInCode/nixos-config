@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/system/base.nix
     ../../modules/server/pihole.nix
   ];
 
@@ -20,14 +21,6 @@
   # Keep DHCP-provided DNS from replacing the nameservers above.
   networking.dhcpcd.extraConfig = "nohook resolv.conf";
   networking.firewall.enable = false;
-
-  time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
 
   users.users.coffeeg = {
     isNormalUser = true;
