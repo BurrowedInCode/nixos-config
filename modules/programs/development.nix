@@ -6,6 +6,10 @@
 
   environment.systemPackages = with pkgs; [
     go_1_27
+    rustc
+    cargo
+    clippy
+    rustfmt
     nodejs
     typescript
     lazygit
@@ -18,6 +22,8 @@
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.herdr
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode
   ];
+
+  environment.variables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
 
   systemd.tmpfiles.rules = [
     "d /home/coffeeg/.config/opencode 0755 coffeeg users - -"

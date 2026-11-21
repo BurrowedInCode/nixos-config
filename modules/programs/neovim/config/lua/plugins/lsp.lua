@@ -15,6 +15,7 @@ return {
           },
         },
         nixd = { mason = false },
+        rust_analyzer = { mason = false },
         lua_ls = { mason = false },
         ts_ls = { mason = false },
       },
@@ -25,6 +26,7 @@ return {
     opts = {
       formatters_by_ft = {
         go = { "gofmt" },
+        rust = { "rustfmt" },
         nix = { "nixfmt" },
         lua = { "stylua" },
         javascript = { "prettier" },

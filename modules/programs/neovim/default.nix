@@ -3,7 +3,10 @@
 {
   environment.systemPackages = with pkgs; [
     neovim
+    ripgrep
+    fd
     gopls
+    rust-analyzer
     nixd
     lua-language-server
     typescript-language-server

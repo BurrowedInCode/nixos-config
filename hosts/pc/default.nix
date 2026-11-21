@@ -12,8 +12,8 @@
 
   networking.hostName = "nixos";
   networking.nameservers = [
-    "192.168.1.51"
-    "192.168.1.52"
+    "192.168.1.200"
+    "192.168.1.201"
   ];
 
   boot.loader.systemd-boot.enable = true;

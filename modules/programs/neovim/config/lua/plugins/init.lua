@@ -5,6 +5,10 @@ return {
     dependencies = { "nvim-mini/mini.icons" },
     opts = {
       default_file_explorer = true,
+      keymaps = {
+        ["-"] = { "actions.close", mode = "n" },
+        ["<BS>"] = { "actions.parent", mode = "n" },
+      },
       view_options = { show_hidden = true },
     },
     keys = {
