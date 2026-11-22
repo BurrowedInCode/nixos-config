@@ -13,9 +13,11 @@
     clippy
     rustfmt
     nodejs
+    pnpm
     typescript
     lazygit
     lazydocker
+    bruno
     ripgrep
     fd
     gcc

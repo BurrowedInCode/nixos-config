@@ -10,6 +10,9 @@
     nixd
     lua-language-server
     typescript-language-server
+    prisma-language-server
+    bash-language-server
+    shellcheck
     prettier
     nixfmt
     stylua
