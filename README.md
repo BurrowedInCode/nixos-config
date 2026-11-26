@@ -67,6 +67,26 @@ intentionally fail until the server's hardware placeholder is replaced. See
 [the server guide](hosts/server/README.md) for installation, networking, Pi-hole,
 and backup instructions.
 
+## PC NVIDIA graphics
+
+The PC's RTX 4060 uses NVIDIA's stable driver with the open kernel module,
+Wayland modesetting, and 32-bit graphics libraries. These settings are in
+`hosts/pc/default.nix`; the desktop allowlist permits NVIDIA's proprietary
+userspace packages. The laptop and server do not enable the NVIDIA driver.
+
+When changing from Nouveau, prepare the next boot instead of switching drivers
+inside a running graphical session:
+
+```sh
+sudo nixos-rebuild boot --flake /home/coffeeg/nixos-config#nixos
+sudo reboot
+```
+
+After reboot, `nvidia-smi` should show the RTX 4060. If the graphical session
+fails, select the previous NixOS generation from the systemd-boot menu (hold
+Space during startup to show it). A rebuild includes all pending configuration
+changes in this checkout, not just the GPU settings.
+
 ## Add a host
 
 1. Create `hosts/<name>/default.nix` and generate its own hardware configuration.

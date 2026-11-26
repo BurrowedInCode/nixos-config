@@ -27,6 +27,8 @@ in
     builtins.elem (pkgs.lib.getName pkg) [
       "brave"
       "discord"
+      "nvidia-x11"
+      "nvidia-settings"
       "obsidian"
     ];
 

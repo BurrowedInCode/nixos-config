@@ -20,7 +20,7 @@
 
   # Keep the laptop's Plasma defaults separate from the PC's session workaround.
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = false;
   services.desktopManager.plasma6.enable = true;
   services.xserver.xkb = {
     layout = "us";

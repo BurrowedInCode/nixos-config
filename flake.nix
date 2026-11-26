@@ -7,8 +7,16 @@
       url = "github:duxlabs-dev/dux-shell/v2.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dank-greeter = {
+      url = "github:duxlabs-dev/dux-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dcal = {
       url = "github:duxlabs-dev/dux-calendar";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =

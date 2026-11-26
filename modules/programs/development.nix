@@ -29,6 +29,10 @@
 
   environment.variables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
 
+  environment.sessionVariables = {
+    PATH = [ "$HOME/.cargo/bin" ];
+  };
+
   systemd.tmpfiles.rules = [
     "d /home/coffeeg/.config/opencode 0755 coffeeg users - -"
     "L+ /home/coffeeg/.config/opencode/tui.json - - - - /etc/opencode/tui.json"

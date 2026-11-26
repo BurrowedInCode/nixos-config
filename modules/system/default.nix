@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [ ./base.nix ];
@@ -23,6 +28,7 @@
     wget
     fastfetch
     git
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default # default, beta, twilight, or twilight-official
   ];
 
   programs.mtr.enable = true;

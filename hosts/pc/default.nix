@@ -21,6 +21,18 @@
 
   services.openssh.enable = true;
 
+  # RTX 4060: NVIDIA's open kernel module, with KMS for Wayland sessions.
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    open = true;
+    modesetting.enable = true;
+    branch = "stable";
+  };
+
   environment.etc."niri/config.kdl".text = lib.mkBefore ''
     output "DP-1" {
         mode "2560x1440@164.983"

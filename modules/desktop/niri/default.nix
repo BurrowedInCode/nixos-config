@@ -3,9 +3,16 @@
 {
   imports = [
     inputs.dcal.nixosModules.dank-calendar
+    inputs.dank-greeter.nixosModules.default
   ];
 
   programs.niri.enable = true;
+
+  programs.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+    configHome = "/home/coffeeg";
+  };
 
   systemd.user.services.niri = {
     environment.NIRI_CONFIG = "/etc/niri/config.kdl";

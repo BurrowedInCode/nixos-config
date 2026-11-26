@@ -2,7 +2,7 @@
 
 {
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = false;
   services.desktopManager.plasma6.enable = true;
 
   # Do not start a GUI crash reporter between graphical sessions.
